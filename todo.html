@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>todo list</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h1> Todo list </h1>
+<div id="form">
+<input id="userinput" type="text" placeholder="Add To List">
+<br>
+<button id="btn">  Add </button> 
+<ul type="none">
+</ul>
+</div>
+<script>
+	var userinput = document.getElementById("userinput");
+	var ul = document.querySelector("ul");
+	var btn = document.getElementById("btn");
+
+	function len() {
+		return userinput.value.length
+	}
+
+	function create(){
+		var li = document.createElement("li");
+		var item = document.createTextNode(userinput.value);
+		var button = document.createElement("button");
+		button.innerHTML = "Delete";
+		li.append(item,button);
+		ul.append(li);
+		userinput.value = "";
+		button.onclick = delItem;
+	}
+
+	function mouseclick(){
+	if(len()>0){
+	create();
+	}
+	}
+
+	function enter(e){
+		if(len()>0 && e.keyCode === 13){
+		create();
+		}
+	}
+
+
+	function delItem(e){
+		e.target.parentNode.remove();
+	}
+	
+
+	btn.addEventListener("click",mouseclick);
+	userinput.addEventListener("keypress",enter);
+</script>
+</body>
+</html>
